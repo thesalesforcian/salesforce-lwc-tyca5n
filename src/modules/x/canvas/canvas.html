@@ -1,0 +1,11 @@
+<template>
+    <svg class="canvas">
+        <template for:each={relationships} for:item="relationship">
+            <line key={relationship.id} x1={relationship.fromX} y1={relationship.fromY} 
+                  x2={relationship.toX} y2={relationship.toY}></line>
+        </template>
+        <template for:each={objects} for:item="object">
+            <circle key={object.id} cx={object.x} cy={object.y} r="20" draggable="true"></circle>
+        </template>
+    </svg>
+</template>

@@ -1,0 +1,33 @@
+<!-- erdCanvas.html -->
+<template>
+<div class="slds-grid slds-wrap erd-container">
+    <!-- SVG for connections and arrowheads -->
+    <svg class="connections" xmlns="http://www.w3.org/2000/svg">
+        <g>
+            <!-- Dynamically render connection lines with arrowheads -->
+            <template for:each={connections} for:item="conn">
+                <g key={conn.id}>
+                    <!-- Draw the main connection line -->
+                    <line x1={conn.x1} y1={conn.y1} x2={conn.x2} y2={conn.y2} stroke="black" stroke-width="2"></line>
+
+                    <!-- Draw the arrowhead -->
+                    <polygon points={conn.arrowPoints} fill="black"></polygon>
+                </g>
+            </template>
+        </g>
+    </svg>
+
+    <!-- Canvas for Entities -->
+    <div class="canvas">
+        <template for:each={entityList} for:item="entity">
+            <x-erd-table
+                key={entity.id}
+                label={entity.name}
+                fields={entity.fields}
+                position={entity.position}
+                ondrag={handleDrag}
+            ></x-erd-table>
+        </template>
+    </div>
+</div>
+</template>
